@@ -21,7 +21,8 @@ class CollectionsPlusPlugin extends Omeka_Plugin_AbstractPlugin
 		'initialize',
 		'define_routes',
 		'admin_head',
-		'public_footer'
+		'public_footer',
+		'collections_browse_sql'
 	);
 	
 	/**
@@ -31,8 +32,8 @@ class CollectionsPlusPlugin extends Omeka_Plugin_AbstractPlugin
 		'public_theme_name', 
 		'items_browse_per_page'
 	);
-
- 	/**
+	
+	/**
 	 * Installation hook.
 	 */
 	public function hookInstall()
@@ -153,6 +154,24 @@ class CollectionsPlusPlugin extends Omeka_Plugin_AbstractPlugin
 			$controller = $request->getControllerName();
 			$action = $request->getActionName();
 			$id = null;
+		}
+	}
+
+    /**
+     * Hook for collections browse
+     */	
+	public function hookCollectionsBrowseSql($args)
+ 	{
+		if (is_admin_theme()) {
+			$select = $args['select'];
+			$params = $args['params'];
+			if (isset($params['empty']) && $params['empty'] == 1) {
+				$sql = "`collections`.id IN 
+						(SELECT c.id 
+						FROM `{$this->_db->Collection}` c LEFT OUTER JOIN `{$this->_db->Item}` i ON c.id = i.collection_id
+						WHERE i.id IS NULL)";
+				$select->where($sql);
+			}
 		}
 	}
 
