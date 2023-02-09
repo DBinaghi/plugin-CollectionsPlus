@@ -42,7 +42,6 @@ class Omeka_View_Helper_CollectionSearchFilters extends Zend_View_Helper_Abstrac
                             $displayValue = $user->name;
                         }
                         break;
-                    case 'empty':
                     case 'public':
                     case 'featured':
                         $displayValue = ($value == 1 ? __('Yes') : $displayValue = __('No'));
