@@ -1,0 +1,71 @@
+# Translation for the Collections Plus plugin for Omeka.
+# Copyright (C) 2023 Daniele Binaghi
+# This file is distributed under the same license as the Omeka package.
+# Daniele Binaghi, 2023
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Collection Plus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 11:54+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Daniele Binaghi\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: CollectionsPlusPlugin.php:115
+#: browse.php:69
+#: advanced.php:1
+msgid "Advanced Settings"
+msgstr "Impostazioni avanzate"
+
+#: browse.php:87
+#: advanced.php:24
+msgid "Items Per Page"
+msgstr "Documenti per pagina"
+
+#: browse.php:91
+#: advanced.php:36
+msgid "Google Analytics Tracking ID"
+msgstr "Google Analytics Tracking ID"
+
+#: CollectionsController.php:96
+msgid "Current Public Theme"
+msgstr "Tema pubblico in uso"
+
+#: CollectionsPlus.php:35
+msgid "Please enter the number of Items per page to be displayed"
+msgstr "Si prega di indicare il numero di documenti per pagina da mostrare"
+
+#: CollectionsPlus.php:39
+msgid "Items Per Page must be a number"
+msgstr "Documenti per pagina dev'essere un numero"
+
+#: CollectionsPlus.php:43
+msgid "You must display at least 1 Item per page"
+msgstr "Devi mostrare almeno 1 documento per pagina"
+
+#: advanced.php:16
+msgid "%sOmeka Theme%s that will be applied to this Collection."
+msgstr "%sTema Omeka%s che verrà applicato a questa collezione."
+
+#: advanced.php:28
+msgid "Number of Items displayed when browsing this Collection (Public interface)."
+msgstr "Numero di documenti da mostrare quando si sfoglia questa collezione (interfaccia pubblica)."
+
+#: advanced.php:40
+msgid "Unique identifier useful to identify and collect this Collection's user traffic and behavior data."
+msgstr "Identificatore univoco utile ad individuare e raccogliere dati su traffico e comportamento degli utenti di questa collezione."
+
+#: CollectionsController.php:77
+msgid "The advanced settings of the collection "%s" were successfully changed!"
+msgstr "Le impostazioni avanzate della collezione \"%s\" sono state modificate!"
+
+#: CollectionsController.php:79
+msgid "The advanced settings of the collection #%s were successfully changed!"
+msgstr "Le impostazioni avanzate della collezione #%s sono state modificate!"
