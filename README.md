@@ -17,6 +17,8 @@ It’s always recommended to backup your files and your databases and to check y
 ## Troubleshooting
 See online issues on the <a href="https://github.com/DBinaghi/plugin-CollectionsPlus/issues" target="_blank">plugin issues</a> page on GitHub.
 
+## Acknowledgments
+Part of this plugin was inspired by the [Enhanced Collections](https://github.com/BGSU-LITS/Enhanced-Collections-Plugin) plugin created in 2013 by the team of [Bowling Green State University Libraries](http://ul2.bgsu.edu/labs/), so credit goes also to them.
 
 ## Copyright
 Copyright [Daniele Binaghi](https://github.com/DBinaghi), 2023
