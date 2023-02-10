@@ -2,7 +2,7 @@
 
 ## Description
 
-Plugin for Omeka Classic. Boostin' up Collections administration.
+Plugin for Omeka Classic. Adds new functions to the Collection browsing admin interface, and also the possibility to further customize single Collections.
 
 ## Installation
 Uncompress files and rename plugin folder "CollectionsPlus".
@@ -22,3 +22,4 @@ Part of this plugin was inspired by the [Enhanced Collections](https://github.co
 
 ## Copyright
 Copyright [Daniele Binaghi](https://github.com/DBinaghi), 2023
+Copyright [Bowling Green State University Libraries](http://ul2.bgsu.edu/labs/), 2013
