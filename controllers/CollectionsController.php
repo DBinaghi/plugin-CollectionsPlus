@@ -39,10 +39,10 @@
 		/**
 		 * Saves the posted data to the database.
 		 *
-		 * @param  CollectionsPlus	$cp			The advanced collection to update settings on.
-		 * @param  array			$data		The posted data
-		 * @param  Collection		$collection The collection object for messages
-		 * @return CollectionsPlus				The modified collection object
+		 * @param  CollectionsPlus	$cp		The advanced collection to update settings on.
+		 * @param  array		$data		The posted data
+		 * @param  Collection		$collection	The collection object for messages
+		 * @return CollectionsPlus			The modified collection object
 		 */
 		protected function handleSettingsPost($cp, array $data, $collection)
 		{
