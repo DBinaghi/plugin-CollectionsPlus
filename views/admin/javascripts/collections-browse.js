@@ -11,7 +11,7 @@ Omeka.CollectionsBrowse = {};
 
         $('tr.collection').each(function() {
             var collectionDetails = $(this).find('.details');
-			if ($.trim(collectionDetails.html()) != '') {
+		if ($.trim(collectionDetails.html()) != '') {
                 $(this).find('.details-link').click(function(e) {
                     e.preventDefault();
                     collectionDetails.slideToggle('fast');
