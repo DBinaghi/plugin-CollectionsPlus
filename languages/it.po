@@ -69,3 +69,7 @@ msgstr "Le impostazioni avanzate della collezione \"%s\" sono state modificate!"
 #: CollectionsController.php:79
 msgid "The advanced settings of the collection #%s were successfully changed!"
 msgstr "Le impostazioni avanzate della collezione #%s sono state modificate!"
+
+#: quick-filters.php:7
+msgid "Empty"
+msgstr "Vuota"
