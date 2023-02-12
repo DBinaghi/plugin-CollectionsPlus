@@ -90,8 +90,8 @@
 							<p>
 								<strong><?php echo __('Items Sort Field'); ?>:</strong>
 								<?php 
-									$elementId = collection_items_sort_field();
-									echo (!is_null($elementId) ? $elementId : __('Default')); 
+									$elementName = collection_items_sort_field();
+									echo (!is_null($elementName) ? $elementName : __('Default')); 
 								?>
 							</p>
 							<p>
