@@ -133,7 +133,7 @@
 				WHERE es.record_type IS NULL OR es.record_type = 'Item'
 				ORDER BY es.name, e.name";
 			$elements = $db->fetchAll($sql);
-			$options = array('' => __('Select Below'));
+			$options = array('' => __('Select Below'), 'added' => __('Date Added'));
 			foreach ($elements as $element) {
 				$optGroup = __($element['element_set_name']);
 				$value = __($element['element_name']);
