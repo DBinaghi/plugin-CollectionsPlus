@@ -2,7 +2,7 @@
 
 ## Description
 
-Plugin for Omeka Classic. Adds new functions to the Collection browsing admin interface, and also the possibility to further customize single Collections.
+Plugin for Omeka Classic. Adds new features to the Collection browsing admin interface, and also the possibility to further customize single Collections.
 
 Among other things, the plugin allows to:
 
