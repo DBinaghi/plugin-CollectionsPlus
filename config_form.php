@@ -14,19 +14,7 @@
 		<p class="explanation">
 			<?php echo __('Choose the field all Collections will be sorted by.'); ?>
 		</p>
-		<select name="collectionsplus_collections_sort_field">
-			<option value=""><?php echo __('Default'); ?></option>
-			<?php $currentCollectionSort =  get_option('collectionsplus_collections_sort_field'); ?>
-
-			<option value="added" <?php if($currentCollectionSort == 'added') { echo 'selected'; }?>><?php echo __('Date Added'); ?></option>
-			<?php
-				foreach ($elements as $element) :
-					$val = $allElements[]=$element->set_name . ',' . $element->name;
-					$checked = ($val == $currentCollectionSort ? 'selected' : '');
-			?>
-			<option value="<?php echo $val;?>" <?php echo $checked; ?>><?php echo __($element->set_name) . ', ' . __($element->name);?></option>
-			<?php endforeach; ?>
-		</select>
+		<?php echo $view->formSelect('collectionsplus_collections_sort_field', get_option('collectionsplus_collections_sort_field'), null, $formElementOptions) ?>
 	</div>
 </div>
 
