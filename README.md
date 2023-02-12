@@ -4,10 +4,34 @@
 
 Plugin for Omeka Classic. Adds new functions to the Collection browsing admin interface, and also the possibility to further customize single Collections.
 
+Among other things, the plugin allows to:
+
+- choose a custom theme for each Collection;
+- choose a custom number of Items to be shown per page when browsing a Collection;
+- choose a custom sort field and order for Items when browsing a Collection;
+- choose a custom sort field and order when browsing Collections.
+
 ## Installation
 Uncompress files and rename plugin folder "CollectionsPlus".
 
 Then install it like any other Omeka plugin.
+
+### Please note
+
+It would probably be a good idea to add whichever sort field you select to sort by to the list of sort links in your browse views. Take a look at the Omeka default theme for an example of how this can be done in `Items/Browse` file:
+
+	$sortLinks[__('Title')] = 'Dublin Core,Title';
+	$sortLinks[__('Creator')] = 'Dublin Core,Creator';
+	$sortLinks[__('Date Added')] = 'added';
+	// begin added code
+	if (get_option('defaultsort_items_enabled')) {
+		$newSortField = get_option('defaultsort_items_option');
+		if (!in_array($newSortField, array('Dublin Core,Title','Dublin Core,Creator','added'))) {
+			$array = explode(',', $newSortField);
+			$sortLinks[__($array[1])] = $newSortField;
+		}
+	}
+	// end added code
 
 ## Warning
 Use it at your own risk.
