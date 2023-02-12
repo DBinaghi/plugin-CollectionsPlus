@@ -26,8 +26,6 @@
 		<p class="explanation">
 			<?php echo __('Choose the sorting direction for all Collections.'); ?>
 		</p>
-		<?php $currentCollectionSortDir = get_option('collectionsplus_collections_sort_dir'); ?>
-		<input type="radio" name="collectionsplus_collections_sort_dir" value="a" <?php if($currentCollectionSortDir == 'a') {echo 'checked';}  ?>> <?php echo __('Ascending'); ?> <br />
-		<input type="radio" name="collectionsplus_collections_sort_dir" value="d" <?php if($currentCollectionSortDir == 'd') {echo 'checked';}  ?>> <?php echo __('Descending'); ?>
+		<?php echo $view->formRadio('collectionsplus_collections_sort_dir', get_option('collectionsplus_collections_sort_dir'), null, array('a' => __('Ascending'), 'd' => __('Descending'))); ?>
 	</div>
 </div>
