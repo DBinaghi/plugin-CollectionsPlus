@@ -33,16 +33,43 @@
 
 		<div class="field">
 			<div class="two columns alpha">
+				<?php echo $this->formLabel('items_sort_field', __('Items Sort Field')); ?>
+			</div>
+			<div class="inputs five columns omega">
+				<p class="explanation">
+					<?php echo __('The field all Items in this Collection will be sorted by.'); ?>
+				</p>
+			
+				<?php echo $this->formSelect('items_sort_field', $this->settings['items_sort_field'], null, $this->elements) ?>
+			</div>
+		</div>
+		
+		<div class="field">
+			<div class="two columns alpha">
+				<?php echo $this->formLabel('items_sort_dir', __('Items Sort Direction')); ?>
+			</div>
+			<div class="inputs five columns omega">
+				<p class="explanation">
+					<?php echo __('The direction all Items in this Collection will be sorted by.'); ?>
+				</p>
+				<?php $itemsSortDirection = $this->settings['items_sort_dir']; ?>
+				<input type="radio" name="items_sort_dir" value="a" <?php if($itemsSortDirection == 'a') {echo 'checked';}  ?>> <?php echo __('Ascending'); ?> <br />
+				<input type="radio" name="items_sort_dir" value="d" <?php if($itemsSortDirection == 'd') {echo 'checked';}  ?>> <?php echo __('Descending'); ?>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="two columns alpha">
 				<?php echo $this->formLabel('tracking_id', __('Google Analytics Tracking ID')); ?>
 			</div>
 			<div class="inputs five columns omega">
 				<p class="explanation">
 					<?php echo __('Unique identifier useful to identify and collect this Collection\'s user traffic and behavior data.'); ?>
 				</p>
-			<?php echo $this->formText('tracking_id', $this->settings['tracking_id']); ?>
+				<?php echo $this->formText('tracking_id', $this->settings['tracking_id']); ?>
 			</div>
 		</div>
-
+		
 		<?php fire_plugin_hook('admin_settings_form', array('view' => $this)); ?>
 	</section>
 	<section class="three columns omega">

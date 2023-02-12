@@ -88,6 +88,17 @@
 								<?php echo collection_per_page(); ?>
 							</p>
 							<p>
+								<strong><?php echo __('Items Sort Field'); ?>:</strong>
+								<?php 
+									$elementId = collection_items_sort_field();
+									echo (!is_null($elementId) ? $elementId : __('Default')); 
+								?>
+							</p>
+							<p>
+								<strong><?php echo __('Items Sort Direction'); ?>:</strong>
+								<?php echo collection_items_sort_dir(); ?>
+							</p>
+							<p>
 								<strong><?php echo __('Google Analytics Tracking ID'); ?>:</strong>
 								<?php echo collection_google_analytics_id(); ?>
 							</p>
