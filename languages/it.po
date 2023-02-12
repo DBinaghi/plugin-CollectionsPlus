@@ -29,7 +29,22 @@ msgstr "Impostazioni avanzate"
 msgid "Items Per Page"
 msgstr "Documenti per pagina"
 
-#: browse.php:91
+# browse.php:91
+#: advanced.php:48
+msgid "Items Sort Field"
+msgstr "Campo ordinamento documenti"
+
+# browse.php:94
+#: function.php:18
+msgid "Default"
+msgstr "Predefinito"
+
+# browse.php:98
+#: advanced.php:61
+msgid "Items Sort Direction"
+msgstr "Direzione ordinamento documenti"
+
+#: browse.php:102
 #: advanced.php:36
 msgid "Google Analytics Tracking ID"
 msgstr "Google Analytics Tracking ID"
@@ -62,6 +77,26 @@ msgstr "Numero di documenti da mostrare quando si sfoglia questa collezione (int
 msgid "Unique identifier useful to identify and collect this Collection's user traffic and behavior data."
 msgstr "Identificatore univoco utile ad individuare e raccogliere dati su traffico e comportamento degli utenti di questa collezione."
 
+#: advanced.php:52
+msgid "The field all Items in this Collection will be sorted by."
+msgstr "Il campo in base al quale tutti i documenti di questa collezione verranno ordinati."
+
+#: advanced.php:65
+msgid "The direction all Items in this Collection will be sorted by."
+msgstr "La direzione nella quale tutti i documenti di questa collezione verranno ordinati."
+
+#: advanced.php:68
+#: function.php:46
+#: config_form.php:42
+msgid "Ascending"
+msgstr "Ascendente"
+
+#: advanced.php:69
+#: function.php:46
+#: config_form.php:43
+msgid "Descending"
+msgstr "Discendente"
+
 #: CollectionsController.php:77
 msgid "The advanced settings of the collection "%s" were successfully changed!"
 msgstr "Le impostazioni avanzate della collezione \"%s\" sono state modificate!"
@@ -73,3 +108,39 @@ msgstr "Le impostazioni avanzate della collezione #%s sono state modificate!"
 #: quick-filters.php:7
 msgid "Empty"
 msgstr "Vuota"
+
+#: function.php:32
+msgid "N/a"
+msgstr "N/a"
+
+#: config_form.php:6
+msgid "Please note"
+msgstr "Attenzione"
+
+#: config_form.php:6
+msgid 
+"in most cases, you will want to add whichever field you select here to the list of sort links in your Theme's %s file;"
+" check the %s file for an example."
+msgstr 
+"nella maggior parte dei casi, vorrete aggiungere il campo qui selezionato alla lista dei collegamenti nel file %s"
+" del vostro Tema; vedere il file %s per un esempio."
+
+#: config_form.php:11
+msgid "Collections Sort Field"
+msgstr "Campo ordinamento collezioni"
+
+#: config_form.php:15
+msgid "Choose the field all Collections will be sorted by."
+msgstr "Scegliere il campo in base al quale ordinare tutte le collezioni."
+
+#: config_form.php:18
+msgid "Please select"
+msgstr ""
+
+#: config_form.php:35
+msgid "Collections Sort Direction"
+msgstr "Direzione ordinamento collezioni"
+
+#: config_form.php:39
+msgid "Choose the sorting direction for all Collections."
+msgstr "Scegliere la direzione di ordinamento per tutte le collezioni."

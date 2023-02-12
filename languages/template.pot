@@ -28,7 +28,22 @@ msgstr ""
 msgid "Items Per Page"
 msgstr ""
 
-#: browse.php:91
+# browse.php:91
+#: advanced.php:48
+msgid "Items Sort Field"
+msgstr ""
+
+# browse.php:94
+#: function.php:18
+msgid "Default"
+msgstr ""
+
+# browse.php:98
+#: advanced.php:61
+msgid "Items Sort Direction"
+msgstr ""
+
+#: browse.php:102
 #: advanced.php:36
 msgid "Google Analytics Tracking ID"
 msgstr ""
@@ -61,14 +76,68 @@ msgstr ""
 msgid "Unique identifier useful to identify and collect this Collection's user traffic and behavior data."
 msgstr ""
 
-#: CollectionsController.php:77
+#: advanced.php:52
+msgid "The field all Items in this Collection will be sorted by."
+msgstr ""
+
+#: advanced.php:65
+msgid "The direction all Items in this Collection will be sorted by."
+msgstr ""
+
+#: advanced.php:68
+#: function.php:46
+#: config_form.php:42
+msgid "Ascending"
+msgstr ""
+
+#: advanced.php:69
+#: function.php:46
+#: config_form.php:43
+msgid "Descending"
+msgstr ""
+
+#: CollectionsController.php:80
 msgid "The advanced settings of the collection "%s" were successfully changed!"
 msgstr ""
 
-#: CollectionsController.php:79
+#: CollectionsController.php:82
 msgid "The advanced settings of the collection #%s were successfully changed!"
 msgstr ""
 
 #: quick-filters.php:7
 msgid "Empty"
+msgstr ""
+
+#: function.php:32
+msgid "N/a"
+msgstr ""
+
+#: config_form.php:6
+msgid "Please note"
+msgstr ""
+
+#: config_form.php:6
+msgid 
+"in most cases, you will want to add whichever field you select here to the list of sort links in your Theme's %s file;"
+" check the %s file for an example."
+msgstr ""
+
+#: config_form.php:11
+msgid "Collections Sort Field"
+msgstr ""
+
+#: config_form.php:15
+msgid "Choose the field all Collections will be sorted by."
+msgstr ""
+
+#: config_form.php:18
+msgid "Please select"
+msgstr ""
+
+#: config_form.php:35
+msgid "Collections Sort Direction"
+msgstr ""
+
+#: config_form.php:39
+msgid "Choose the sorting direction."
 msgstr ""
