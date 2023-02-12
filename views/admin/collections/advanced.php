@@ -52,9 +52,7 @@
 				<p class="explanation">
 					<?php echo __('The direction all Items in this Collection will be sorted by.'); ?>
 				</p>
-				<?php $itemsSortDirection = $this->settings['items_sort_dir']; ?>
-				<input type="radio" name="items_sort_dir" value="a" <?php if($itemsSortDirection == 'a') {echo 'checked';}  ?>> <?php echo __('Ascending'); ?> <br />
-				<input type="radio" name="items_sort_dir" value="d" <?php if($itemsSortDirection == 'd') {echo 'checked';}  ?>> <?php echo __('Descending'); ?>
+				<?php echo $this->formRadio('items_sort_dir', $this->settings['items_sort_dir'], null, array('a' => __('Ascending'), 'd' => __('Descending'))); ?>
 			</div>
 		</div>
 
