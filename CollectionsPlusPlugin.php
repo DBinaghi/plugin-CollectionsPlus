@@ -106,6 +106,13 @@
 				->order('ISNULL(elements.order)')
 				->order('elements.order');
 			$elements = $elementsTable->fetchObjects($select);
+			$options = array('' => __('Select Below'), 'added' => __('Date Added'));
+			foreach ($elements as $element) {
+				$optGroup = __($element['element_set_name']);
+				$value = __($element['element_name']);
+				$options[$optGroup][$element['element_set_name'] . ',' . $element['element_name']] = $value;
+			}
+			$formElementOptions = $options;
 
 			include 'config_form.php';
 		}
