@@ -18,6 +18,7 @@
 
 			$this->view->collection = $collection;
 			$this->view->themes = $this->getThemes();
+			$this->view->elements = $this->_getFormElementOptions();
 
 			$this->view->settings = $cp ? $cp->toArray() : $this->getDefaults();
 		}
@@ -30,19 +31,21 @@
 		protected function getDefaults()
 		{
 			return array(
-				'slug' => "",
+				'slug' => '',
 				'per_page' => get_option('per_page_public'),
-				'theme' => ""
+				'theme' => '',
+				'items_sort_field' => 0,
+				'items_sort_dir' => ''
 			);
 		}
 
 		/**
 		 * Saves the posted data to the database.
 		 *
-		 * @param  CollectionsPlus	$cp		The advanced collection to update settings on.
-		 * @param  array		$data		The posted data
-		 * @param  Collection		$collection	The collection object for messages
-		 * @return CollectionsPlus			The modified collection object
+		 * @param  CollectionsPlus	$cp			The advanced collection to update settings on.
+		 * @param  array			$data		The posted data
+		 * @param  Collection		$collection The collection object for messages
+		 * @return CollectionsPlus				The modified collection object
 		 */
 		protected function handleSettingsPost($cp, array $data, $collection)
 		{
@@ -110,6 +113,33 @@
 			}
 
 			return $themes;
+		}
+
+		/**
+		 * Get an array to be used in formSelect() containing all elements, 
+		 * with the ones already assigned marked.
+		 *
+		 * @return array
+		 */
+		private function _getFormElementOptions()
+		{
+			$db = $this->_helper->db->getDb();
+			$sql = "
+				SELECT es.name AS element_set_name,
+					e.id AS element_id,
+					e.name AS element_name
+				FROM {$db->ElementSet} es
+				JOIN {$db->Element} e ON es.id = e.element_set_id
+				WHERE es.record_type IS NULL OR es.record_type = 'Item'
+				ORDER BY es.name, e.name";
+			$elements = $db->fetchAll($sql);
+			$options = array('' => __('Select Below'));
+			foreach ($elements as $element) {
+				$optGroup = __($element['element_set_name']);
+				$value = __($element['element_name']);
+				$options[$optGroup][$element['element_set_name'] . ',' . $element['element_name']] = $value;
+			}
+			return $options;
 		}
 	}
 ?>
