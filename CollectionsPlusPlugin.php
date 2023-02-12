@@ -4,7 +4,7 @@
 	/**
 	 * Collections Plus Plugin
 	 *
-	 * @author		Daniele Binaghi
+	 * @author	Daniele Binaghi <https://github.com/DBinaghi>
 	 * @contributor	Dave Widmer <dwidmer@bgsu.edu>
 	 * @contributor	Anuragji
 	 */
@@ -236,8 +236,7 @@
 		 */
 		public function filterPublicThemeName($name)
 		{
-			if ($this->theme_name === null)
-			{
+			if ($this->theme_name === null) {
 				$id = $this->getCollectionId();
 				if ($id !== null) {
 					$db = get_db();
@@ -267,15 +266,11 @@
 				$collectionId = $this->getCollectionId();
 				if ($collectionId !== null) {
 					$cp = get_db()->getTable('CollectionsPlus')->find($collectionId);
-					if ($cp !== null) {
-						$perPage = $cp->per_page;
-					}
+					if ($cp !== null) $perPage = $cp->per_page;
 				}
 			}
 
-			if ($perPage < 1) {
-				$perPage = null;
-			}
+			if ($perPage < 1) $perPage = null;
 
 			return $perPage;
 		}
@@ -301,7 +296,7 @@
 							if ($cp !== null) {
 								$params['sort_field'] = $cp->items_sort_field;
 								$params['sort_dir'] = $cp->items_sort_dir;
-			echo 'FIELD: ' . $params['sort_field'] . ' | DIR: ' . $params['sort_dir'] . '<br>';			
+
 								// Apply the default sort from the plugin
 								$req->setParam($sortParam, $cp->items_sort_field);
 								$req->setParam($sortDirParam, $cp->items_sort_dir);
@@ -390,9 +385,7 @@
 		private function loadCommon($theme)
 		{
 			$file = PUBLIC_THEME_DIR . '/' . $theme . '/common.php';
-			if (file_exists($file)) {
-				include_once $file;
-			}
+			if (file_exists($file)) include_once $file;
 		}
 	}
 ?>
