@@ -25,6 +25,16 @@ class CollectionsPlus extends Omeka_Record_AbstractRecord
 	public $tracking_id;
 
 	/**
+	 * @var string	Browse items sort field
+	 */
+	public $items_sort_field;
+
+	/**
+	 * @var string	Browse items sort direction
+	 */
+	public $items_sort_dir;
+
+	/**
 	 * Template method for defining record validation rules.
 	 */
 	protected function _validate()
