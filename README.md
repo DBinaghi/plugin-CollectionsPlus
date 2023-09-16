@@ -16,9 +16,7 @@ Uncompress files and rename plugin folder "CollectionsPlus".
 
 Then install it like any other Omeka plugin.
 
-### Please note
-
-It would probably be a good idea to add whichever sort field you select to sort by to the list of sort links in your browse views. Take a look at the Omeka default theme for an example of how this can be done in `Items/Browse` file:
+Please note: it would probably be a good idea to add whichever sort field you select to sort by to the list of sort links in your browse views. Take a look at the Omeka default theme for an example of how this can be done in `Items/Browse` file:
 
 	$sortLinks[__('Title')] = 'Dublin Core,Title';
 	$sortLinks[__('Creator')] = 'Dublin Core,Creator';
