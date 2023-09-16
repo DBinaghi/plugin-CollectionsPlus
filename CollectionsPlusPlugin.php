@@ -53,7 +53,7 @@
 				`id` int(10) unsigned NOT NULL,
 				`theme` varchar(100) NOT NULL,
 				`per_page` smallint(5) unsigned NOT NULL,
-				`tracking_id` varchar(100) NOT NULL,
+				`tracking_id` varchar(20) NOT NULL,
 				`items_sort_field` varchar(100) NOT NULL,
 				`items_sort_dir` char(1) NOT NULL,
 				PRIMARY KEY (`id`)
