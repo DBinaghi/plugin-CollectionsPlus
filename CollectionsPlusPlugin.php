@@ -108,9 +108,9 @@
 			$elements = $elementsTable->fetchObjects($select);
 			$options = array('' => __('Select Below'), 'added' => __('Date Added'));
 			foreach ($elements as $element) {
-				$optGroup = __($element['element_set_name']);
-				$value = __($element['element_name']);
-				$options[$optGroup][$element['element_set_name'] . ',' . $element['element_name']] = $value;
+				$optGroup = __($element['set_name']);
+				$value = __($element['name']);
+				$options[$optGroup][$element['set_name'] . ',' . $element['name']] = $value;
 			}
 			$formElementOptions = $options;
 
