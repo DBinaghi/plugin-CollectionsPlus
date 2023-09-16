@@ -52,4 +52,5 @@ Part of this plugin was inspired by the [Enhanced Collections](https://github.co
 
 ## Copyright
 Copyright [Daniele Binaghi](https://github.com/DBinaghi), 2023
+
 Copyright [Bowling Green State University Libraries](http://ul2.bgsu.edu/labs/), 2013
