@@ -8,7 +8,7 @@ Among other things, the plugin allows to:
 
 - choose a custom theme for each Collection;
 - choose a custom number of Items to be shown per page when browsing a Collection;
-- choose a custom sort field and order for Items when browsing a Collection;
+- choose a custom sort field and order for Items when browsing a Collection and when seeing a Collection preview;
 - choose a custom sort field and order when browsing Collections.
 
 ## Installation
