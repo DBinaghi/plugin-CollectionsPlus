@@ -285,9 +285,9 @@
 				
 				$sortParam = Omeka_Db_Table::SORT_PARAM;
 				$sortDirParam = Omeka_Db_Table::SORT_DIR_PARAM;
-				
+
 				// Browse Items
-				if (array_key_exists('controller', $params) & array_key_exists('action', $params)) {
+				if (array_key_exists('controller', $params) && array_key_exists('action', $params)) {
 					if ($requestParams['controller'] == 'items' && $requestParams['action'] == 'browse') {
 						$collectionId = $this->getCollectionId();
 						// Only apply the custom sort if available and no other sort has been defined
@@ -301,6 +301,20 @@
 								$req->setParam($sortParam, $cp->items_sort_field);
 								$req->setParam($sortDirParam, $cp->items_sort_dir);
 							}
+						}
+					}
+				} elseif ($requestParams['controller'] == 'collections' && $requestParams['action'] == 'show') {
+					$collectionId = $this->getCollectionId();
+					// Only apply the custom sort if available and no other sort has been defined
+					if ($collectionId !== null && !isset($_GET['sort_field'])) {
+						$cp = get_db()->getTable('CollectionsPlus')->find($collectionId);
+						if ($cp !== null) {
+							$params['sort_field'] = $cp->items_sort_field;
+							$params['sort_dir'] = $cp->items_sort_dir;
+
+							// Apply the default sort from the plugin
+							$req->setParam($sortParam, $cp->items_sort_field);
+							$req->setParam($sortDirParam, $cp->items_sort_dir);
 						}
 					}
 				}
