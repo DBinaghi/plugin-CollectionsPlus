@@ -48,7 +48,7 @@ In consideration of access to the source code and the rights to copy, modify and
 In this respect, the risks associated with loading, using, modifying and/or developing or reproducing the software by the user are brought to the user’s attention, given its Free Software status, which may make it complicated to use, with the result that its use is reserved for developers and experienced professionals having in-depth computer knowledge. Users are therefore encouraged to load and test the suitability of the software as regards their requirements in conditions enabling the security of their systems and/or data to be ensured and, more generally, to use and operate it in the same conditions of security. This Agreement may be freely reproduced and published, provided it is not altered, and that no provisions are either added or removed herefrom.
 
 ## Acknowledgments
-Part of this plugin was inspired by the [Enhanced Collections](https://github.com/BGSU-LITS/Enhanced-Collections-Plugin) plugin created in 2013 by the team of [Bowling Green State University Libraries](http://ul2.bgsu.edu/labs/) and by the [DefaultSort](https://github.com/anuragji/DefaultSort) plugin created in 2014 by [anuragji](https://github.com/anuragji).
+Parts of this plugin were inspired by the [Enhanced Collections](https://github.com/BGSU-LITS/Enhanced-Collections-Plugin) plugin created in 2013 by the team of [Bowling Green State University Libraries](http://ul2.bgsu.edu/labs/) and by the [DefaultSort](https://github.com/anuragji/DefaultSort) plugin created in 2014 by [anuragji](https://github.com/anuragji).
 
 ## Copyright
 Copyright [Daniele Binaghi](https://github.com/DBinaghi), 2023
