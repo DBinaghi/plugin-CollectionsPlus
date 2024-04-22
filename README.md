@@ -4,12 +4,7 @@
 
 Plugin for Omeka Classic. Adds new features to the Collection browsing admin interface, and also the possibility to further customize single Collections.
 
-Among other things, the plugin allows to:
-
-- choose a custom theme for each Collection;
-- choose a custom number of Items to be shown per page when browsing a Collection;
-- choose a custom sort field and order for Items when browsing a Collection and when seeing a Collection preview;
-- choose a custom sort field and order when browsing Collections.
+Once installed, the plugin adds an "Advanced Settings" link to each Collection in Collections, Admin Side. That link opens up a page where it is possible to choose a custom theme for each Collection, choose a custom number of Items to be shown per page when browsing a Collection, choose a custom sort field and order for Items when browsing a Collection and when seeing a Collection preview. Besides that, the plugin configration page allows to choose a custom sort field and order when browsing Collections.
 
 ## Installation
 Uncompress files and rename plugin folder "CollectionsPlus".
