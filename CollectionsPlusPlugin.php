@@ -281,6 +281,8 @@
 			if (!is_admin_theme()) {
 				// Only apply to Items inside a Collection
 				$req = Zend_Controller_Front::getInstance()->getRequest();
+				if (!$req) return $params;
+
 				$requestParams = $req->getParams();
 				
 				$sortParam = Omeka_Db_Table::SORT_PARAM;
@@ -328,6 +330,8 @@
 			// Only apply to public side
 			if (!is_admin_theme()) {
 				$req = Zend_Controller_Front::getInstance()->getRequest();
+				if (!$req) return $params;
+
 				$requestParams = $req->getParams();
 
 				$sortParam = Omeka_Db_Table::SORT_PARAM;
