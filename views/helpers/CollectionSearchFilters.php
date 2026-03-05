@@ -45,7 +45,7 @@ class Omeka_View_Helper_CollectionSearchFilters extends Zend_View_Helper_Abstrac
 					case 'empty':
 					case 'public':
 					case 'featured':
-						$displayValue = ($value == 1 ? __('Yes') : $displayValue = __('No'));
+						$displayValue = ($value == 1 ? __('Yes') : __('No'));
 						break;
 					case 'search':
 					case 'tags':
@@ -62,17 +62,12 @@ class Omeka_View_Helper_CollectionSearchFilters extends Zend_View_Helper_Abstrac
 		$displayArray = apply_filters('collection_search_filters', $displayArray, array('request_array' => $requestArray));
 
 		$html = '';
-		if (!empty($displayArray) || !empty($advancedArray)) {
+		if (!empty($displayArray)) {
 			$html .= '<div id="item-filters">';
 			$html .= '<ul>';
 			foreach ($displayArray as $name => $query) {
 				$class = html_escape(strtolower(str_replace(' ', '-', $name)));
 				$html .= '<li class="' . $class . '">' . html_escape(__($name)) . ': ' . html_escape($query) . '</li>';
-			}
-			if (!empty($advancedArray)) {
-				foreach ($advancedArray as $j => $advanced) {
-					$html .= '<li class="advanced">' . html_escape($advanced) . '</li>';
-				}
 			}
 			$html .= '</ul>';
 			$html .= '</div>';
