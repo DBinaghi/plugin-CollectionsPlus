@@ -82,7 +82,8 @@
 							<p>
 								<strong><?php echo __('Theme'); ?>:</strong>
 								<?php echo collection_theme(); ?>
-								<br>
+							</p>
+							<p>
 								<strong><?php echo __('Items Per Page'); ?>:</strong>
 								<?php echo collection_per_page(); ?>
 							</p>
@@ -129,14 +130,14 @@
 	<?php endif; ?>
 	<p class="not-in-collections"><?php echo $withoutCollectionMessage; ?></p>
 
-	 <script type="text/javascript">
+	<script type="text/javascript">
 		Omeka.addReadyCallback(Omeka.CollectionsBrowse.setupDetails, [
 			<?php echo js_escape(__('Details')); ?>,
 			<?php echo js_escape(__('Show Details')); ?>,
 			<?php echo js_escape(__('Hide Details')); ?>
 		]);
 		Omeka.addReadyCallback(Omeka.quickFilter);
-	 </script>
+	</script>
 
 <?php else: ?>
 	<?php $total_collections = total_records('Collection'); ?>
@@ -146,10 +147,10 @@
 			<p><?php echo __('Get started by adding your first collection.'); ?></p>
 			<a href="<?php echo html_escape(url('collections/add')); ?>" class="add green button"><?php echo __('Add a Collection'); ?></a>
 		<?php endif; ?>
-	 <?php else: ?>
+	<?php else: ?>
 		<p>
-				<?php echo __(plural('The query searched 1 collection and returned no results.', 'The query searched %s collections and returned no results.', $total_collections), $total_collections); ?>
-				<?php echo link_to('collections', null, __('View All Collections')); ?>
+			<?php echo __(plural('The query searched 1 collection and returned no results.', 'The query searched %s collections and returned no results.', $total_collections), $total_collections); ?>
+			<?php echo link_to('collections', null, __('View All Collections')); ?>
 		</p>
 	<?php endif; ?>
 <?php endif; ?>
