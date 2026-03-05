@@ -11,6 +11,13 @@
 	class CollectionsPlusPlugin extends Omeka_Plugin_AbstractPlugin
 	{
 		protected $theme_name = null;
+
+		/**
+		 * Cached collection id for the current request.
+		 *
+		 * @var int|null|false  false = not yet resolved; null = not a collection page; int = resolved id
+		 */
+		protected $_cachedCollectionId = false;
 		
 		/**
 		 * @var array  All of the hooks used in this plugin
@@ -121,19 +128,10 @@
 		{
 			$post = $args['post'];
 
-			// manually check exluded collections in case $_POST came back empty
-			if (!isset($post['defaultsort_excluded_collections'])) {
-				$post['defaultsort_excluded_collections'] = array();
-			}
-
-			foreach($post as $key=>$value) {
-
-				// serialize our excluded collections
-				if ($key == 'defaultsort_excluded_collections') {
-					$value = serialize($value);
+			foreach (array_keys($this->_options) as $key) {
+				if (isset($post[$key])) {
+					set_option($key, $post[$key]);
 				}
-
-				set_option($key, $value);
 			}
 		}
 
@@ -150,34 +148,44 @@
 			$router->addConfig(new Zend_Config_Ini($path, 'routes'));
 		}
 
+		/**
+		 * Enqueue JS and inline scripts only on relevant admin pages.
+		 */
 		public function hookAdminHead()
 		{
-			queue_js_file('collections-browse');
-
 			$request = Zend_Controller_Front::getInstance()->getRequest();
 			$controller = $request->getControllerName();
 			$action = $request->getActionName();
-			if ($controller == 'collections' && $action == 'show') {
-				queue_js_string("
-					document.addEventListener('DOMContentLoaded', function() {
-						var panel = document.getElementById('edit');
-						var buttons = panel.children;
-						for (i=0; i < buttons.length; i++) {
-							if (buttons[i].href.indexOf('/collections/edit/') > 0) {
-								var cln = buttons[i].cloneNode(true);
-								cln.innerHTML = '" . __('Advanced Settings') . "';
-								cln.href = cln.href.replace('collections/edit', 'collections/advanced');
-								buttons[i].parentNode.insertBefore(cln, buttons[i].nextSibling);
-								break;
+
+			if ($controller === 'collections') {
+				// JS for the browse view (details toggle, quick filter)
+				if ($action === 'index') {
+					queue_js_file('collections-browse');
+				}
+
+				// Inline JS to inject the "Advanced Settings" button on the show page
+				if ($action === 'show') {
+					queue_js_string("
+						document.addEventListener('DOMContentLoaded', function() {
+							var panel = document.getElementById('edit');
+							var buttons = panel.children;
+							for (var i = 0; i < buttons.length; i++) {
+								if (buttons[i].href && buttons[i].href.indexOf('/collections/edit/') > 0) {
+									var cln = buttons[i].cloneNode(true);
+									cln.innerHTML = '" . __('Advanced Settings') . "';
+									cln.href = cln.href.replace('collections/edit', 'collections/advanced');
+									buttons[i].parentNode.insertBefore(cln, buttons[i].nextSibling);
+									break;
+								}
 							}
-						}
-					}, false);
-				");
+						}, false);
+					");
+				}
 			}
 		}
 
 		/**
-		 * Checks for the Google Analytics Tracking Id and adds it if necessary
+		 * Checks for the Google Analytics Tracking Id and adds it if necessary.
 		 *
 		 * @param array $args  The hook arguments
 		 */
@@ -187,30 +195,23 @@
 				return;
 			}
 
-			$cp = null;
 			$id = $this->getCollectionId();
-			
-			if (!is_null($id)) {
-				$cp = get_db()->getTable('CollectionsPlus')->find($id);
-			
-				if (!is_null($cp) && !empty($cp->tracking_id))
-				{
-					echo $args['view']->partial(
-						'tracking-code.php',
-						array('id' => $cp->tracking_id)
-					);
-				}
-			
-				$request = Zend_Controller_Front::getInstance()->getRequest();
-				$controller = $request->getControllerName();
-				$action = $request->getActionName();
-				$id = null;
+			if ($id === null) {
+				return;
+			}
+
+			$cp = get_db()->getTable('CollectionsPlus')->find($id);
+			if ($cp !== null && !empty($cp->tracking_id)) {
+				echo $args['view']->partial(
+					'tracking-code.php',
+					array('id' => $cp->tracking_id)
+				);
 			}
 		}
 
 		/**
-		 * Hook for collections browse
-		 */	
+		 * Hook for collections browse: filter by empty collections on admin side.
+		 */
 		public function hookCollectionsBrowseSql($args)
 		{
 			if (is_admin_theme()) {
@@ -239,7 +240,7 @@
 				if ($id !== null) {
 					$cp = get_db()->getTable('CollectionsPlus')->find($id);
 
-					if ($cp !== null && ! empty($cp->theme)) {
+					if ($cp !== null && !empty($cp->theme)) {
 						$this->theme_name = $cp->theme;
 						$this->loadCommon($this->theme_name);
 					}
@@ -275,46 +276,31 @@
 		public function filterItemsBrowseParams($params)
 		{
 			// Only apply to public side
-			if (!is_admin_theme()) {
-				// Only apply to Items inside a Collection
-				$req = Zend_Controller_Front::getInstance()->getRequest();
-				if (!$req) return $params;
+			if (is_admin_theme()) {
+				return $params;
+			}
 
-				$requestParams = $req->getParams();
-				
-				$sortParam = Omeka_Db_Table::SORT_PARAM;
-				$sortDirParam = Omeka_Db_Table::SORT_DIR_PARAM;
+			$req = Zend_Controller_Front::getInstance()->getRequest();
+			if (!$req) return $params;
 
-				// Browse Items
-				if (array_key_exists('controller', $params) && array_key_exists('action', $params)) {
-					if ($requestParams['controller'] == 'items' && $requestParams['action'] == 'browse') {
-						$collectionId = $this->getCollectionId();
-						// Only apply the custom sort if available and no other sort has been defined
-						if ($collectionId !== null && !isset($_GET['sort_field'])) {
-							$cp = get_db()->getTable('CollectionsPlus')->find($collectionId);
-							if ($cp !== null) {
-								$params['sort_field'] = $cp->items_sort_field;
-								$params['sort_dir'] = $cp->items_sort_dir;
+			$requestParams = $req->getParams();
+			$controller = $requestParams['controller'];
+			$action = $requestParams['action'];
 
-								// Apply the default sort from the plugin
-								$req->setParam($sortParam, $cp->items_sort_field);
-								$req->setParam($sortDirParam, $cp->items_sort_dir);
-							}
-						}
-					}
-				} elseif ($requestParams['controller'] == 'collections' && $requestParams['action'] == 'show') {
-					$collectionId = $this->getCollectionId();
-					// Only apply the custom sort if available and no other sort has been defined
-					if ($collectionId !== null && !isset($_GET['sort_field'])) {
-						$cp = get_db()->getTable('CollectionsPlus')->find($collectionId);
-						if ($cp !== null) {
-							$params['sort_field'] = $cp->items_sort_field;
-							$params['sort_dir'] = $cp->items_sort_dir;
+			$isItemsBrowse = ($controller === 'items' && $action === 'browse'
+				&& array_key_exists('controller', $params) && array_key_exists('action', $params));
+			$isCollectionShow = ($controller === 'collections' && $action === 'show');
 
-							// Apply the default sort from the plugin
-							$req->setParam($sortParam, $cp->items_sort_field);
-							$req->setParam($sortDirParam, $cp->items_sort_dir);
-						}
+			if ($isItemsBrowse || $isCollectionShow) {
+				$collectionId = $this->getCollectionId();
+				if ($collectionId !== null && !isset($_GET['sort_field'])) {
+					$cp = get_db()->getTable('CollectionsPlus')->find($collectionId);
+					if ($cp !== null) {
+						$params['sort_field'] = $cp->items_sort_field;
+						$params['sort_dir'] = $cp->items_sort_dir;
+
+						$req->setParam(Omeka_Db_Table::SORT_PARAM, $cp->items_sort_field);
+						$req->setParam(Omeka_Db_Table::SORT_DIR_PARAM, $cp->items_sort_dir);
 					}
 				}
 			}
@@ -325,27 +311,27 @@
 		public function filterCollectionsBrowseParams($params)
 		{
 			// Only apply to public side
-			if (!is_admin_theme()) {
-				$req = Zend_Controller_Front::getInstance()->getRequest();
-				if (!$req) return $params;
+			if (is_admin_theme()) {
+				return $params;
+			}
 
-				$requestParams = $req->getParams();
+			$req = Zend_Controller_Front::getInstance()->getRequest();
+			if (!$req) return $params;
 
-				$sortParam = Omeka_Db_Table::SORT_PARAM;
-				$sortDirParam = Omeka_Db_Table::SORT_DIR_PARAM;
+			$requestParams = $req->getParams();
 
-				// Browse Collections
-				if (array_key_exists('controller', $params) && array_key_exists('action', $params)) {
-					if ($requestParams['controller'] == 'collections' && $requestParams['action'] == 'browse') {
-						// Only apply the default sort if no other sort has been defined
-						if (!isset($_GET['sort_field'])) {
-							$params['sort_field'] = get_option('collectionsplus_collections_sort_field');
-							$params['sort_dir'] = get_option('collectionsplus_collections_sort_dir');
+			// Browse Collections — note: && instead of & (bitwise AND bug fix)
+			if (array_key_exists('controller', $params) && array_key_exists('action', $params)) {
+				if ($requestParams['controller'] === 'collections' && $requestParams['action'] === 'browse') {
+					if (!isset($_GET['sort_field'])) {
+						$sortField = get_option('collectionsplus_collections_sort_field');
+						$sortDir   = get_option('collectionsplus_collections_sort_dir');
 
-							// Apply the default sort from the plugin
-							$req->setParam($sortParam, $params['sort_field']);
-							$req->setParam($sortDirParam, $params['sort_dir']);
-						}
+						$params['sort_field'] = $sortField;
+						$params['sort_dir']   = $sortDir;
+
+						$req->setParam(Omeka_Db_Table::SORT_PARAM, $sortField);
+						$req->setParam(Omeka_Db_Table::SORT_DIR_PARAM, $sortDir);
 					}
 				}
 			}
@@ -355,11 +341,16 @@
 
 		/**
 		 * The id number of the current collection.
+		 * Result is cached for the duration of the request.
 		 *
 		 * @return int|null   The collection id number or null if this isn't a collection page.
 		 */
 		protected function getCollectionId()
 		{
+			if ($this->_cachedCollectionId !== false) {
+				return $this->_cachedCollectionId;
+			}
+
 			$request = Zend_Controller_Front::getInstance()->getRequest();
 			$controller = $request->getControllerName();
 			$action = $request->getActionName();
@@ -367,19 +358,20 @@
 
 			if ($controller === 'collections' && $action === 'show') {
 				$id = $request->getParam('id');
-			} else if ($controller === 'items') {
-				if (in_array($action, array('browse', 'tags', 'search')) === true) {
+			} elseif ($controller === 'items') {
+				if (in_array($action, array('browse', 'tags', 'search'))) {
 					$id = $request->getParam('collection');
-				} else if ($action === 'show') {
+				} elseif ($action === 'show') {
 					$id = $this->getCollectionIdFromItem($request->getParam('id'));
 				}
 			}
 
+			$this->_cachedCollectionId = $id;
 			return $id;
 		}
 
 		/**
-		 * Find the id of the collection that the given item is apart of.
+		 * Find the id of the collection that the given item belongs to.
 		 *
 		 * @param  int $id   The item id
 		 * @return int|null  The collection id or null
@@ -387,12 +379,11 @@
 		protected function getCollectionIdFromItem($id)
 		{
 			$item = get_db()->getTable('Item')->find($id);
-
 			return ($item === null) ? null : $item->collection_id;
 		}
 
 		/**
-		 * Checks for a common.php file and load it up if it exists.
+		 * Checks for a common.php file and loads it if it exists.
 		 *
 		 * @param  string $theme The theme name
 		 */
