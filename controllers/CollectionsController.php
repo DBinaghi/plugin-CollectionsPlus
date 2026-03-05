@@ -31,11 +31,11 @@
 		protected function getDefaults()
 		{
 			return array(
-				'slug' => '',
 				'per_page' => get_option('per_page_public'),
 				'theme' => '',
-				'items_sort_field' => 0,
-				'items_sort_dir' => ''
+				'tracking_id' => '',
+				'items_sort_field' => 'added',
+				'items_sort_dir' => 'd'
 			);
 		}
 
@@ -75,7 +75,7 @@
 		
 		protected function _getEditSuccessMessage($collection)
 		{
-			$collectionTitle = $this->_getElementMetadata($collection, 'Dublin Core', 'Title');
+			$collectionTitle = metadata($collection, array('Dublin Core', 'Title'));
 			if ($collectionTitle != '') {
 				return __('The advanced settings of the collection "%s" were successfully changed!', $collectionTitle);
 			} else {
