@@ -35,18 +35,18 @@
 
 		/**
 		 * Template method for defining record validation rules.
+		 * Checks are ordered from least to most specific to ensure
+		 * early return on simpler failures.
 		 */
 		protected function _validate()
 		{
-			$errors = array();
-
-			if (!Zend_Validate::is($this->per_page, 'Digits')) {
-				$this->addError(__('Items Per Page'), __('Items Per Page must be a number'));
+			if ($this->per_page === '') {
+				$this->addError(__('Items Per Page'), __('Please enter the number of Items per page to be displayed'));
 				return;
 			}
 
-			if ($this->per_page === '') {
-				$this->addError(__('Items Per Page'), __('Please enter the number of Items per page to be displayed'));
+			if (!Zend_Validate::is($this->per_page, 'Digits')) {
+				$this->addError(__('Items Per Page'), __('Items Per Page must be a number'));
 				return;
 			}
 
