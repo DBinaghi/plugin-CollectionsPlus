@@ -1,0 +1,263 @@
+# Translation for the Collections Plus plugin for Omeka.
+# Copyright (C) 2023-2026 Daniele Binaghi
+# This file is distributed under the same license as the Omeka package.
+# Daniele Binaghi, 2023-2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Collections Plus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-05 00:00+0100\n"
+"PO-Revision-Date: 2025-03-05 00:00+0100\n"
+"Last-Translator: Daniele Binaghi\n"
+"Language-Team: Esperanto <LL@li.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: CollectionsPlusPlugin.php:175
+#: browse.php:69
+#: advanced.php:1
+msgid "Advanced Settings"
+msgstr "Altnivelaj agordoj"
+
+#: CollectionsPlusPlugin.php:116
+#: CollectionsController.php:136
+msgid "Select Below"
+msgstr "Elektu sube"
+
+#: CollectionsPlusPlugin.php:116
+#: CollectionsController.php:136
+msgid "Date Added"
+msgstr "Aldita dato"
+
+#: browse.php:87
+#: advanced.php:24
+msgid "Items Per Page"
+msgstr "Eroj po paĝo"
+
+#: browse.php:91
+#: advanced.php:36
+msgid "Items Sort Field"
+msgstr "Ordigkampo de eroj"
+
+#: browse.php:94
+#: functions.php:18
+msgid "Default"
+msgstr "Defaŭlta"
+
+#: browse.php:98
+#: advanced.php:49
+msgid "Items Sort Direction"
+msgstr "Ordigdirektо de eroj"
+
+#: browse.php:102
+#: advanced.php:61
+msgid "Google Analytics Tracking ID"
+msgstr "Tracking ID de Google Analytics"
+
+#: browse.php:83
+#: advanced.php:12
+msgid "Theme"
+msgstr "Fasado"
+
+#: advanced.php:75
+msgid "Save Changes"
+msgstr "Konservi ŝanĝojn"
+
+#: CollectionsController.php:109
+msgid "Current Public Theme"
+msgstr "Nuna publika fasado"
+
+#: CollectionsPlus.php:43
+msgid "Please enter the number of Items per page to be displayed"
+msgstr "Bonvolu indiki la nombron da eroj po paĝo por montri"
+
+#: CollectionsPlus.php:49
+msgid "Items Per Page must be a number"
+msgstr "Eroj po paĝo devas esti nombro"
+
+#: CollectionsPlus.php:54
+msgid "You must display at least 1 Item per page"
+msgstr "Vi devas montri almenaŭ 1 eron po paĝo"
+
+#: advanced.php:16
+msgid "%sOmeka Theme%s that will be applied to this Collection."
+msgstr "%sOmeka-fasado%s kiu estos aplikata al ĉi tiu kolekto."
+
+#: advanced.php:28
+msgid "Number of Items displayed when browsing this Collection (Public interface)."
+msgstr "Nombro da eroj montrataj dum foliumi ĉi tiun kolekton (publika interfaco)."
+
+#: advanced.php:65
+msgid "Unique identifier useful to identify and collect this Collection's user traffic and behavior data."
+msgstr "Unika identigilo utila por identigi kaj kolekti datumojn pri trafiko kaj konduto de uzantoj de ĉi tiu kolekto."
+
+#: advanced.php:40
+msgid "The field all Items in this Collection will be sorted by."
+msgstr "La kampo laŭ kiu ĉiuj eroj de ĉi tiu kolekto estos ordigitaj."
+
+#: advanced.php:53
+msgid "The direction all Items in this Collection will be sorted by."
+msgstr "La direkto laŭ kiu ĉiuj eroj de ĉi tiu kolekto estos ordigitaj."
+
+#: advanced.php:55
+#: functions.php:46
+#: config_form.php:29
+msgid "Ascending"
+msgstr "Kreskanta"
+
+#: advanced.php:55
+#: functions.php:46
+#: config_form.php:29
+msgid "Descending"
+msgstr "Malkreskanta"
+
+#: CollectionsController.php:80
+msgid "The advanced settings of the collection \"%s\" were successfully changed!"
+msgstr "La altnivelaj agordoj de la kolekto \"%s\" estis sukcese ŝanĝitaj!"
+
+#: CollectionsController.php:82
+msgid "The advanced settings of the collection #%s were successfully changed!"
+msgstr "La altnivelaj agordoj de la kolekto #%s estis sukcese ŝanĝitaj!"
+
+#: quick-filters.php:1
+#: quick-filters.php:2
+msgid "Quick Filter"
+msgstr "Rapida filtrilo"
+
+#: quick-filters.php:3
+msgid "View All"
+msgstr "Vidi ĉiujn"
+
+#: quick-filters.php:4
+msgid "Public"
+msgstr "Publika"
+
+#: quick-filters.php:5
+msgid "Private"
+msgstr "Privata"
+
+#: quick-filters.php:6
+msgid "Featured"
+msgstr "Elstarigita"
+
+#: quick-filters.php:7
+msgid "Empty"
+msgstr "Malplena"
+
+#: functions.php:32
+msgid "N/a"
+msgstr "N/a"
+
+#: browse.php:2
+msgid "Browse Collections"
+msgstr "Foliumi kolektojn"
+
+#: browse.php:2
+msgid "(%s total)"
+msgstr "(%s entute)"
+
+#: browse.php:18
+#: browse.php:128
+#: browse.php:148
+msgid "Add a Collection"
+msgstr "Aldoni kolekton"
+
+#: browse.php:25
+msgid "%s%d item%s has no collection."
+msgid_plural "%s%d items%s aren't in a collection."
+msgstr[0] "%s%d ero%s ne apartenas al iu ajn kolekto."
+msgstr[1] "%s%d eroj%s ne apartenas al iu ajn kolekto."
+
+#: browse.php:28
+msgid "All items are in a collection."
+msgstr "Ĉiuj eroj apartenas al kolekto."
+
+#: browse.php:39
+msgid "Title"
+msgstr "Titolo"
+
+#: browse.php:40
+msgid "Contributors"
+msgstr "Kontribuantoj"
+
+#: browse.php:42
+msgid "Total Number of Items"
+msgstr "Totala nombro da eroj"
+
+#: browse.php:59
+msgid "Featured"
+msgstr "Elstarigita"
+
+#: browse.php:62
+msgid "(Private)"
+msgstr "(Privata)"
+
+#: browse.php:68
+msgid "Edit"
+msgstr "Redakti"
+
+#: browse.php:73
+msgid "Delete"
+msgstr "Forigi"
+
+#: browse.php:111
+msgid "No contributors"
+msgstr "Neniuj kontribuantoj"
+
+#: browse.php:135
+msgid "Details"
+msgstr "Detaloj"
+
+#: browse.php:136
+msgid "Show Details"
+msgstr "Montri detalojn"
+
+#: browse.php:137
+msgid "Hide Details"
+msgstr "Kaŝi detalojn"
+
+#: browse.php:145
+msgid "You have no collections."
+msgstr "Vi ne havas kolektojn."
+
+#: browse.php:147
+msgid "Get started by adding your first collection."
+msgstr "Komencu aldonante vian unuan kolekton."
+
+#: browse.php:152
+msgid "The query searched 1 collection and returned no results."
+msgid_plural "The query searched %s collections and returned no results."
+msgstr[0] "La serĉo trarigardis 1 kolekton kaj ne trovis rezultojn."
+msgstr[1] "La serĉo trarigardis %s kolektojn kaj ne trovis rezultojn."
+
+#: browse.php:153
+msgid "View All Collections"
+msgstr "Vidi ĉiujn kolektojn"
+
+#: config_form.php:3
+msgid "Please note"
+msgstr "Atentu"
+
+#: config_form.php:6
+msgid "in most cases, you will want to add whichever field you select here to the list of sort links in your Theme's %s file; check the %s file for an example."
+msgstr "en la plimulto de kazoj, vi volos aldoni la kampon ĉi tie elektitan al la listo de ordigiloj en la dosiero %s de via fasado; vidu la dosieron %s por ekzemplo."
+
+#: config_form.php:11
+msgid "Collections Sort Field"
+msgstr "Ordigkampo de kolektoj"
+
+#: config_form.php:15
+msgid "Choose the field all Collections will be sorted by."
+msgstr "Elektu la kampon laŭ kiu ĉiuj kolektoj estos ordigitaj."
+
+#: config_form.php:23
+msgid "Collections Sort Direction"
+msgstr "Ordigdirektо de kolektoj"
+
+#: config_form.php:27
+msgid "Choose the sorting direction for all Collections."
+msgstr "Elektu la ordigdirekton por ĉiuj kolektoj."
