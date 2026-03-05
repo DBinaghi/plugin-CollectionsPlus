@@ -157,24 +157,22 @@
 			$request = Zend_Controller_Front::getInstance()->getRequest();
 			$controller = $request->getControllerName();
 			$action = $request->getActionName();
-			if ($controller == 'collections') {
-				if ($action == 'show') {
-					queue_js_string("
-						document.addEventListener('DOMContentLoaded', function() {
-							var panel = document.getElementById('edit');
-							var buttons = panel.children;
-							for (i=0; i < buttons.length; i++) {
-								if (buttons[i].href.indexOf('/collections/edit/') > 0) {
-									var cln = buttons[i].cloneNode(true);
-									cln.innerHTML = '" . __('Advanced Settings') . "';
-									cln.href = cln.href.replace('collections/edit', 'collections/advanced');
-									buttons[i].parentNode.insertBefore(cln, buttons[i].nextSibling);
-									break;
-								}
+			if ($controller == 'collections' && $action == 'show') {
+				queue_js_string("
+					document.addEventListener('DOMContentLoaded', function() {
+						var panel = document.getElementById('edit');
+						var buttons = panel.children;
+						for (i=0; i < buttons.length; i++) {
+							if (buttons[i].href.indexOf('/collections/edit/') > 0) {
+								var cln = buttons[i].cloneNode(true);
+								cln.innerHTML = '" . __('Advanced Settings') . "';
+								cln.href = cln.href.replace('collections/edit', 'collections/advanced');
+								buttons[i].parentNode.insertBefore(cln, buttons[i].nextSibling);
+								break;
 							}
-						}, false);
-					");
-				}
+						}
+					}, false);
+				");
 			}
 		}
 
@@ -239,8 +237,7 @@
 			if ($this->theme_name === null) {
 				$id = $this->getCollectionId();
 				if ($id !== null) {
-					$db = get_db();
-					$cp = $db->getTable('CollectionsPlus')->find($id);
+					$cp = get_db()->getTable('CollectionsPlus')->find($id);
 
 					if ($cp !== null && ! empty($cp->theme)) {
 						$this->theme_name = $cp->theme;
@@ -338,9 +335,9 @@
 				$sortDirParam = Omeka_Db_Table::SORT_DIR_PARAM;
 
 				// Browse Collections
-				if (array_key_exists('controller', $params) & array_key_exists('action', $params)) {
+				if (array_key_exists('controller', $params) && array_key_exists('action', $params)) {
 					if ($requestParams['controller'] == 'collections' && $requestParams['action'] == 'browse') {
-						// Only apply the Default Sort if no other sort has been defined
+						// Only apply the default sort if no other sort has been defined
 						if (!isset($_GET['sort_field'])) {
 							$params['sort_field'] = get_option('collectionsplus_collections_sort_field');
 							$params['sort_dir'] = get_option('collectionsplus_collections_sort_dir');
@@ -389,8 +386,7 @@
 		 */
 		protected function getCollectionIdFromItem($id)
 		{
-			$db = get_db();
-			$item = $db->getTable('Item')->find($id);
+			$item = get_db()->getTable('Item')->find($id);
 
 			return ($item === null) ? null : $item->collection_id;
 		}
